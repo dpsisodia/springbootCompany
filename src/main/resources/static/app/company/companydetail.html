@@ -1,0 +1,57 @@
+
+<div class="form-horizontal">
+    <fieldset>
+        <legend>Company Detail</legend>
+
+        <!-- div class="col-lg-3">
+            <img ng-src="{{currentCompany.Image ? currentCompany.Image : 'companyimages/default-image.png'}}"
+                 class="img-circle"
+                 alt='company image' />
+        </div -->
+
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label for="inputEmail" class="col-lg-3 control-label">Full Name</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" ng-model="currentCompany.name" disabled>
+                </div>
+                <div class="col-lg-1">                    
+                    <button ng-click="editCompany()"
+                            ng-hide="currentCompany == null"
+                            class="btn btn-primary">
+                        Edit
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-lg-3 control-label">Address</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" ng-model="currentCompany.address" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-lg-3 control-label">City</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" ng-model="currentCompany.city" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-lg-3 control-label">Country</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" ng-model="currentCompany.country" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-8 col-lg-offset-3">
+                    <a ui-sref="company.detail.employee({employeeid: currentCompany.id})">Employee Detail</a>
+                </div>
+            </div>            
+        </div>
+
+    </fieldset>
+</div>
+
+<div ui-view></div>
+
+
+

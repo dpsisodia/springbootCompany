@@ -1,0 +1,21 @@
+
+<div class="form-horizontal">
+    <fieldset>
+        <legend>Employee Detail</legend>
+
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>S. No</th>
+                <th>Name</th>
+                <th>Type</th>
+            </tr>
+            <tr ng-repeat="employee in employees">
+                <td>#{{$index + 1}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.type}}</td>
+                <td>{{employee.email}}</td>
+            </tr>
+        </table>
+
+    </fieldset>
+</div>

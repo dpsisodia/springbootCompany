@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/site.css" rel="stylesheet" />
+
+</head>
+<body ng-app="MyApp" class="animate">
+    
+    <!-- div class="loading-dialog" data-loading>
+        <h1>Loading</h1>
+    </div-->
+        
+    <div class="container body-content">
+        <div class="alert-danger" ng-if="error.length > 0 "ng-bind="error"></div>
+        <div ui-view> </div>
+    </div>
+
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-ui-router.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+
+
+    <!-- Application files -->
+    <script src="app/app.js"></script>
+    <script src="app/employee/employeectrl.js"></script>
+    <script src="app/company/companyCtrl.js"></script>
+    <script src="app/company/companyEmployeeCtrl.js"></script>
+
+    <!-- Application Services -->
+    <script src="app/services/Company.js"></script>
+    <!-- Application Directives -->
+    <script src="app/directives/asCompany.js"></script>
+</body>
+</html>

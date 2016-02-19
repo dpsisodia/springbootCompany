@@ -1,0 +1,125 @@
+<div class="modal-content">
+    <form name="form" >
+        <div class="modal-header">
+            <button type="button" 
+                    class="close" 
+                    ng-click="cancel()"
+                    data-dismiss="modal" 
+                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">{{headerTitle}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Company Name</label>
+                    <div class="col-lg-8">
+                        <input type="text"
+                               class="form-control"
+                               ng-model="company.name"
+                               ng-required="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Address</label>
+                    <div class="col-lg-8">
+                        <input type="text"
+                               class="form-control"
+                               ng-model="company.address"
+                               ng-required="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">City</label>
+                    <div class="col-lg-8">
+                        <input type="text"
+                               class="form-control"
+                               ng-model="company.city"
+                               ng-required="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">Country</label>
+                    <div class="col-lg-8">
+                        <input type="text"
+                               class="form-control"
+                               ng-model="company.country"
+                               ng-required="true">
+                    </div>
+                </div>
+                <div >
+                <div class="form-group">
+                    <div class="col-lg-8">
+					<button type="button" ng-click="addPerson()" class="btn btn-success">+ Add Employee/Owner</button>                    
+					</div>
+					
+					<table class="table table-bordered table-hover">
+       <thead>
+         <tr>
+           <th>
+              Name
+           </th>
+           <th>
+              Type 
+          </th>
+          <th>
+
+          </th>
+        </tr>
+      </thead>
+      <body>
+         <tr ng-repeat="person in company.employees">
+           <td style="width:350px">
+                            <input type="text"
+                               class="form-control"
+                               ng-model="person.name"
+                               ng-required="true">
+           
+             
+          </td>
+          <td style="width:350px">
+          					<input type="text"
+                               class="form-control"
+                               ng-model="person.email"
+                               ng-required="true">
+           
+             
+          </td>
+          <td>
+          <input type="text"
+                               class="form-control"
+                               ng-model="person.type"
+                               ng-required="true">
+          </td>
+          <td>
+             <button type="button" 
+             		ng-click="removePerson($index)"
+             		class="btn btn-danger">
+             		-
+             </button>
+          </td>
+        </tr>
+      </body>
+    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button"
+                    ng-click="save()"
+                    ng-disabled="form.$invalid"
+                    class="btn btn-success">
+                Save
+            </button>
+            <button type="button"
+                    ng-click="cancel()"
+                    class="btn btn-danger"
+                    data-dismiss="modal">
+                Cancel
+            </button>
+
+            <div class="alert-danger" ng-if="error.length > 0 " ng-bind="error"></div>
+
+        </div>
+    </form>
+</div>
