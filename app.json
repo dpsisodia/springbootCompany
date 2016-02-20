@@ -1,0 +1,6 @@
+{
+  "name": "Angular-SpringBoot-Heroku sample program",
+  "description": "A Java app, to create Company and maintain related Employee/Owners.",
+  "image": "heroku/java",
+  "addons": [ ]
+}
