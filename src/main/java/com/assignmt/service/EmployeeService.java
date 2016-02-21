@@ -58,22 +58,25 @@ public class EmployeeService {
 	    		empFromDB.setEmail(employee.getEmail());
 	    		empFromDB.setCompanyId(employee.getCompanyId());
 	    		result.add(empRepo.saveAndFlush(empFromDB));
-	
+	    		logger.info("Updated Employees={}", new HashSet<Employee>(result.getEmployees()));
 	    	} else {
 
 	    		result.add(empRepo.saveAndFlush(employee));
+	    		logger.info("Created Employees={}", new HashSet<Employee>(result.getEmployees()));
 	    	}
     	}
-    	logger.info("created Employees={}", new HashSet<Employee>(result.getEmployees()));
+    	
     	return result;
     }
 
 	@Transactional
     public void deleteEmployees(Integer... ids) {
     	for(Integer id:ids) {
+    		logger.debug("deleting employee. id={}", id);
     		Employee emp = empRepo.getOne(id);
     		empRepo.delete(emp);
     		empRepo.flush();
+    		logger.info("deleted employee. id={}", id);
     	}
     }
     

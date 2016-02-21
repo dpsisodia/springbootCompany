@@ -31,7 +31,7 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@RequestMapping(method = GET)
-	public List<Employee> searchContacts(@RequestParam(defaultValue = "") Integer companyId, @RequestParam(defaultValue = "0") int page,
+	public List<Employee> findEmployeesByCompany(@RequestParam(defaultValue = "") Integer companyId, @RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "200") int pageSize) {
 		return employeeService.searchEmployeesByCompanyId(companyId, page, pageSize);
 	}

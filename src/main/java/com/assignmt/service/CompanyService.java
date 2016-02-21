@@ -65,7 +65,7 @@ public class CompanyService {
     public void deleteCompanys(Integer... ids) {
     	for(Integer id:ids) {
     		Integer deletedEmployees = empRepo.deleteEmployeesByCompanyId(id);
-    		logger.info("Employees deleted count={}, companyId={}", deletedEmployees, id);
+    		logger.info("Deleted employee count={}, companyId={}", deletedEmployees, id);
     		empRepo.flush();
     		
     		Company company = companyRepo.getOne(id);

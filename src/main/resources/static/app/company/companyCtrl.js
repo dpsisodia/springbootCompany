@@ -2,14 +2,17 @@
 app.controller('companyCtrl', ['$scope', '$state', '$stateParams', '$modal', '$log', 'Company', function ($scope, $state, $stateParams, $modal, $log, Company) {
 
     var id = $stateParams.id;
-
-    $scope.searchText = '';
-    $scope.companies = searchCompanys();
-    $scope.employees = [];
-    $scope.company = null;
-    $scope.currentCompany = null;
-
-
+    
+    function init(){
+	    $scope.searchText = '';
+	    $scope.companies = searchCompanys();
+	    $scope.employees = [];
+	    $scope.company = null;
+	    $scope.currentCompany = null;
+    }
+    
+    init();
+    
     $scope.$watch('searchText', function (newVal, oldVal) {
         if (newVal != oldVal) {
             searchCompanys();
@@ -41,10 +44,11 @@ app.controller('companyCtrl', ['$scope', '$state', '$stateParams', '$modal', '$l
     $scope.deleteCompany = function ($event, id) {
         var ans = confirm('Are you sure to delete it?');
         if (ans) {
-            Company.delete(id)
+            Company.delete('api/companies/'+ id)
             .then(function () {
                 var element = $event.currentTarget;
                 $(element).closest('div[class^="col-lg-12"]').hide();
+                init();
             })
         }
     };
@@ -93,23 +97,37 @@ app.controller('companyCtrl', ['$scope', '$state', '$stateParams', '$modal', '$l
 app.controller('companyModalCtrl', ['$scope', '$modalInstance', 'Company', 'company', function ($scope, $modalInstance, Company, company) {
 
     $scope.company = company;
-    
-    if (company.id > 0)
+    $scope.deletedPersons = [];
+    if (company.id > 0) {
         $scope.headerTitle = 'Edit Company';
-    else
+//        $scope.company.employees = function (company.id) {
+//            return Company.companyEmployees(company.id)
+//            .then(function (data) {
+//                $scope.employees = Company.employees;
+//            });
+//        };    
+    } else {
         $scope.headerTitle = 'Add Company';
+        $scope.company.employees = [{name:'',email:'',type:'Employee'}];
+    }
     
     $scope.save = function () {
         Company.Save($scope.company).then(function (response) {
-            $modalInstance.close(response.data);
+            //TODO: coarse grain method to improve perfomance 
+            for(i=0;i<$scope.deletedPersons.length;i++) {
+            	Company.delete('api/employees/'+ $scope.deletedPersons[i].id);
+            }
+        	$modalInstance.close(response); //response.data
         })
     };
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
+   
 
-    $scope.company.employees = [{name:'',email:'',type:'Employee'}];
+    
+   
     
 
                    $scope.addPerson = function(){
@@ -124,6 +142,8 @@ app.controller('companyModalCtrl', ['$scope', '$modalInstance', 'Company', 'comp
                    }; 
 
                    $scope.removePerson = function(index){
+                	 $scope.deletedPersons.length;
+                	 $scope.deletedPersons[$scope.deletedPersons.length] = $scope.company.employees[index]
                      $scope.company.employees.splice(index, 1);
                    };  
     
