@@ -1,5 +1,6 @@
 package com.assignmt.service;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.assignmt.model.Company;
+import com.assignmt.model.Employee;
 import com.assignmt.repository.CompanyRepository;
 import com.assignmt.repository.EmployeeRepository;
 
@@ -37,6 +39,7 @@ public class CompanyService {
     @Transactional
     public Company saveCompany(Company company) {
     	logger.trace("inside saveCompany. company={}", company);
+    	Company result = null;
     	if(company.getId() != null) {
     		Company compFromDB = companyRepo.getOne(company.getId());
     		logger.debug("companyRepo.getOne()={}",compFromDB);
@@ -46,13 +49,16 @@ public class CompanyService {
     		compFromDB.setCountry(company.getCountry());
     		compFromDB.setEmail(company.getEmail());
     		compFromDB.setPhoneNumber(company.getPhoneNumber());
-    		return companyRepo.saveAndFlush(compFromDB);
-
+    		result = companyRepo.saveAndFlush(compFromDB);
+        	logger.info("Updated Company={}", result);
     	} else { 
     		// if company does not exists then create new company and its associates 
     		throwExceptionIfNameAlreadyExist(company);
-    		return companyRepo.saveAndFlush(company);
+    		result = companyRepo.saveAndFlush(company);
+        	logger.info("Created Company={}", result);
     	}
+
+    	return result;
     }
 
 	@Transactional

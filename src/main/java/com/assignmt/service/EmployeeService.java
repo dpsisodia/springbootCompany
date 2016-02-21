@@ -1,5 +1,6 @@
 package com.assignmt.service;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -63,6 +64,7 @@ public class EmployeeService {
 	    		result.add(empRepo.saveAndFlush(employee));
 	    	}
     	}
+    	logger.info("created Employees={}", new HashSet<Employee>(result.getEmployees()));
     	return result;
     }
 
