@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 var app = angular.module('MyApp', [
     'ui.router',
     'ui.bootstrap',
@@ -16,6 +16,11 @@ app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider
             templateUrl: 'app/employee/employee.html',
             controller: 'employeeCtrl'
         }) 
+        .state('company', {
+            url: '/',
+            templateUrl: 'app/company/company.html',
+            controller: 'companyCtrl'
+        })
         .state('company.detail', {
             url: '^/company/detail/{id:[0-9]{1,5}}',
             templateUrl: 'app/company/companydetail.html',
@@ -27,5 +32,4 @@ app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider
             controller: 'companyEmployeeCtrl'
         })
 }]);
-
 

@@ -50,13 +50,14 @@
         	   return postCompany(baseUrl , param, company)
         	   				.then(postEmployees)
         	   				.then(function(result){
-        	   					//alert('final:'+JSON.stringify(result));
+        	   					// alert('final:'+JSON.stringify(result));
         	   					var deferred = $q.defer();
         	   					deferred.resolve(companyService.company);
         	   					return deferred.promise;
         	   				});
         	   
            };
+           
            function postCompany(baseUrl , param, company){
         	   var deferred = $q.defer();
         	   return $http.post(baseUrl , param)
@@ -74,6 +75,7 @@
 
         	   return deferred.promise;
            }
+           
            function postEmployees(result){
         	   var deferred = $q.defer();
         	   companyService.company = result.data;
@@ -81,7 +83,7 @@
             	 companyService.company.employees[i].companyId=companyService.company.id
              }
              var empReq = angular.toJson({"employees":companyService.company.employees});
-             //alert(empReq)
+             // alert(empReq)
         	   return $http.post(employeeBaseUrl , empReq)
              .success(function (data) {
              	companyService.company.employees =[];
@@ -95,12 +97,13 @@
 
         	   return deferred.promise;
            }
+           
            // Companys detail by company id
            companyService.companyDetail = function (id) {
         	   var deferred = $q.defer();
                var urls = [baseUrl + "/" + id, employeeBaseUrl + "?companyId=" + id];
         	   var urlCalls = [];
-               //alert(JSON.stringify(urls))
+               // alert(JSON.stringify(urls))
                angular.forEach(urls, function(url) {
                  urlCalls.push($http.get(url));
                });
@@ -110,7 +113,7 @@
                $q.all(urlCalls)
                .then(
                  function(results) {
-                	 //alert(JSON.stringify(results));
+                	 // alert(JSON.stringify(results));
                 	 deferred.resolve(
                   
                   companyService.currentCompany = results[0].data,
