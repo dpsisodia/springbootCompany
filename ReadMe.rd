@@ -1,13 +1,13 @@
-						Company Management Tool
-						=======================
+#Company Management Tool 
+=======================
 	
-Company Management is a tool that manages complete lifecycle of a company, its employees and owners.
-Main Technology Stack:
-Spring Boot 1.2.5, Spring Data JPA
-Java 8,
-Bean Validations
-Angular 1.3
-Docker-Heroku 
+Company Management is a tool that manages complete lifecycle of a company, its employees and owners.  
+* Main Technology Stack:
+1. Spring Boot 1.2.5, Spring Data JPA
+2. Java 8,
+3. Bean Validations
+4. Angular 1.3
+5. Docker-Heroku 
 
 
 cURL help
